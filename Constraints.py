@@ -149,11 +149,11 @@ def unterschiedlicheRaumVars(model: CpModel, orm: ORM):
 
 def unterschiedlicheAufsichtVars(model: CpModel, orm: ORM):
     """
-       Alle AufsichtVars ungleich 0 einer Prüfung müssen verschieden sein
-       :param model: CpModel
-       :param orm: ORM
-       :return:
-       """
+    Alle AufsichtVars ungleich 0 einer Prüfung müssen verschieden sein
+    :param model: CpModel
+    :param orm: ORM
+    :return:
+    """
     for p in orm.getPruefungen():
         for i in range(len(p.aufsichtVars)):
             for j in range(i + 1, len(p.aufsichtVars)):

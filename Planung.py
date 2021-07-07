@@ -10,6 +10,7 @@ import Aufbereitung
 from Maps import *
 from Constraints import *
 from Plan import Plan
+from Validierung import *
 
 # Strafen für die Optimierungsfunktion
 VIERTER_SLOT_STRAFE = 10
@@ -102,7 +103,11 @@ def main():
                         plan.addPruefung(pruefung, raumMap[solver.Value(rVar)],
                                          aufsichtMap[solver.Value(aVar)],
                                          zeitSlotMap[solver.Value(pruefung.zeitVar)])
+
+
+        print(validierePlan(plan))
         Aufbereitung.writeTimeTableExcelFile(plan, uniName, fachbereichName, semesterName, orm)
+
     if status == INFEASIBLE:
         print("\nkeine Lösung möglich!")
     elif status == UNKNOWN:

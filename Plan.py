@@ -53,3 +53,9 @@ class Plan:
             for tu in i[1]:
                 if tu[PRUEFUNG] == pruefung:
                     return i[0]
+
+    def getZeitMap(self):
+            """
+            Returns: zeitSlotMap für Validierung
+            """
+            return self.zeitSlotMap

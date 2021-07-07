@@ -808,9 +808,9 @@ if __name__ == '__main__':
 
     # Funktionen zur Erzeugung von Testdaten
     #kleine Testdaten 5 Prüfungen
-    genTestDatenKlein(session)
+    #genTestDatenKlein(session)
     #große Testdaten 98 Prüfungen
-    #genTestDatenGroß(session)
+    genTestDatenGroß(session)
     #Mittlere Testdaten ~25 Klausuren
     #genTestDatenMittel(session)
 
