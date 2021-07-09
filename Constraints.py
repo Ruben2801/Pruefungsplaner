@@ -409,6 +409,13 @@ def raumNichtVerfuegbarConstraint(model: CpModel, orm: ORM):
 
 
 def aufsichtNichtVerfuegbarConstraint(model: CpModel, orm: ORM):
+    """
+    Dieses Constraint sichert zu, dass eine Aufsicht die zu einem ZeitSlot anderweitig vergeben ist,
+    nicht verplant werden kann.
+    :param model: CpModel
+    :param orm: ORM
+    :return:
+    """
     for aufsicht in orm.getAufsichten():
         for ZeitSlot in aufsicht.nicht_verfuegbare_aufsicht_zeitslots:
             for pruefung in orm.getPruefungen():
@@ -491,6 +498,12 @@ def spaeteZeitSlots(model: CpModel, orm: ORM, slot: int, strafe: int):
 
 
 def beachteWunschTermine(model: CpModel, orm: ORM):
+    """
+    Methode zur Beachtung von Wunschterminen
+    :param model: CpModel
+    :param orm: ORM
+    :return:
+    """
     summe = model.NewConstant(0)
     nichtbeachtet = []
     for pruefung in orm.getPruefungen():

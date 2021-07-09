@@ -8,7 +8,8 @@ from Plan import *
 
 formatierung = dict()
 
-#ZeitSlotHeader für die Tage und SLots
+
+# ZeitSlotHeader für die Tage und SLots
 def erzeugeZeitSlotHeader(worksheet, semester, reihe):
     worksheet.merge_range(reihe, 0, reihe + 2, 2, semester, formatierung["semesterNameFormat"])
     column = 4
@@ -33,7 +34,8 @@ def erzeugeZeitSlotHeader(worksheet, semester, reihe):
             column += 1
     return reihe + 3
 
-#Header für die Studentensicht (Nur Prüfungstage)
+
+# Header für die Studentensicht (Nur Prüfungstage)
 def erzeugeZeitSlotStudHeader(worksheet, reihe):
     column = 3
     worksheet.set_row(reihe, 26)
@@ -45,7 +47,8 @@ def erzeugeZeitSlotStudHeader(worksheet, reihe):
         column += 2
     return reihe + 1
 
-#header
+
+# header
 def erzeugeHeader(worksheet, fachbereich, semester, sicht, orm, reihe) -> int:
     laenge = len(orm.getZeitSlots()) + 5
     tag = datetime.today().date()
@@ -74,7 +77,8 @@ def erzeugeHeader(worksheet, fachbereich, semester, sicht, orm, reihe) -> int:
 
     return reihe
 
-#AufsichtView für Aufsichten
+
+# AufsichtView für Aufsichten
 def erzeugeAufsichtView(plan, workbook, fachbereich, semester, orm):
     worksheet = workbook.add_worksheet("Aufsichten")
     reihe = 0
@@ -114,7 +118,8 @@ def erzeugeAufsichtView(plan, workbook, fachbereich, semester, orm):
     reihe += 1
     worksheet.set_row(reihe, 2)
 
-#Studentensicht
+
+# Studentensicht
 def erzeugeStudentenView(plan, workbook, fachbereich, semester, orm):
     worksheet = workbook.add_worksheet("Studenten")
     reihe = 0
@@ -157,7 +162,8 @@ def erzeugeStudentenView(plan, workbook, fachbereich, semester, orm):
 
         reihe += 1
 
-#Gesamtes File erzeugen
+
+# Gesamtes File erzeugen
 def writeTimeTableExcelFile(plan: Plan, uniName, fachbereich, semester, orm):
     s = ("%s_Prüfungsplan_%s_%s.xlsx" % (uniName, fachbereich, semester))
     workbook = xlsxwriter.Workbook(s)
@@ -179,7 +185,7 @@ def writeTimeTableExcelFile(plan: Plan, uniName, fachbereich, semester, orm):
         {'num_format': 'dd/mm/yy', 'align': 'center'})
     formatierung["semesterNameFormat"] = workbook.add_format(
         {'bold': True, 'font_size': '20', 'font_name': 'Arial', 'align': 'center', 'valign': 'vcenter'})
-    formatierung["blackBackgroundFormat"] = workbook.add_format({'bg_color': 'black'})
+
     erzeugeAufsichtView(plan, workbook, fachbereich, semester, orm)
     erzeugeStudentenView(plan, workbook, fachbereich, semester, orm)
 

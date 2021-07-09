@@ -796,6 +796,139 @@ def genTestDatenGroß(session: Session):
 
     session.commit()
 
+def genStudiengangsVerstoß(session: Session):
+    s = session
+
+    i = 1
+
+    while i <= ORM.PRUEFUNGSTAGE:
+        zeit1 = ZeitSlot(pruefungstag_nummer=i, slotTag_nummer=1)
+        zeit2 = ZeitSlot(pruefungstag_nummer=i, slotTag_nummer=2)
+        zeit3 = ZeitSlot(pruefungstag_nummer=i, slotTag_nummer=3)
+        zeit4 = ZeitSlot(pruefungstag_nummer=i, slotTag_nummer=4)
+        session.add_all([zeit1, zeit2, zeit3, zeit4])
+        i += 1
+
+    Aufsicht1 = Aufsicht(name="Max Müller", kurzform="mül")
+    Aufsicht2 = Aufsicht(name="Klaus Kleber", kurzform="kle")
+    Aufsicht3 = Aufsicht(name="Werner Weiß", kurzform="wei")
+    Aufsicht4 = Aufsicht(name="Anna Angst", kurzform="ang")
+
+    Aufsicht1.nicht_verfuegbare_aufsicht_zeitslots.extend([zeitslotByID(session, 1), zeitslotByID(session, 2)])
+    # Aufsicht3.nicht_verfuegbare_aufsicht_zeitslots.extend([ZeitSlot(pruefungstag_nummer=0, slotTag_nummer=3)])
+    # Aufsicht4.nicht_verfuegbare_aufsicht_zeitslots.extend([ZeitSlot(pruefungstag_nummer=1, slotTag_nummer=1)])
+
+    session.add_all([Aufsicht1, Aufsicht2, Aufsicht3, Aufsicht4])
+
+    Raum1 = Raum(name="AM2", groesse="60")
+    Raum2 = Raum(name="AM1", groesse="80")
+    Raum3 = Raum(name="18.1.01", groesse="30")
+    Raum4 = Raum(name="18.1.03", groesse="35")
+    Raum1.nicht_verfuegbare_zeitslots.extend([zeitslotByID(session, 1), zeitslotByID(session, 2)])
+    # Raum2.nicht_verfuegbare_zeitslots.extend([ZeitSlot(pruefungstag_nummer=0, slotTag_nummer=2)])
+    # Raum3.nicht_verfuegbare_zeitslots.extend([ZeitSlot(pruefungstag_nummer=0, slotTag_nummer=3)])
+    # Raum4.nicht_verfuegbare_zeitslots.extend([ZeitSlot(pruefungstag_nummer=0, slotTag_nummer=1)])
+
+    session.add_all([Raum1, Raum2, Raum3, Raum4])
+
+    SemesterGruppe1 = SemesterGruppe(name="inf1", studiengang=1)
+    SemesterGruppe2 = SemesterGruppe(name="inf3", studiengang=1)
+    SemesterGruppe3 = SemesterGruppe(name="inf5", studiengang=1)
+    SemesterGruppe4 = SemesterGruppe(name="eks1", studiengang=2)
+    SemesterGruppe5 = SemesterGruppe(name="eks3", studiengang=2)
+
+    Studiengang1 = Studiengang(name="Informatik/Softwaretechnik", kurzform="Inf/Swt")
+    Studiengang2 = Studiengang(name="Elektrotechnik- Kommunikationssysteme", kurzform="EKS")
+
+    Pruefung1 = neuePrüfung("Mathematik 1", "Ma1", "SB112", 30,2)
+    Pruefung2 = neuePrüfung("Informatik 1", "Inf1", "SB122", 40,0)
+    Pruefung3 = neuePrüfung("Physik 1", "Phy1", "SB132", 100,0)
+    Pruefung4 = neuePrüfung("Elektronik 1", "Elt1", "SB152", 5,0)
+    Pruefung5 = neuePrüfung("Elektronik 2", "Elt2", "SB152", 5,0)
+
+    Pruefung1.pruefung_SemesterGruppe_table.append(SemesterGruppe1)
+    Pruefung2.pruefung_SemesterGruppe_table.append(SemesterGruppe1)
+    Pruefung3.pruefung_SemesterGruppe_table.append(SemesterGruppe4)
+    Pruefung4.pruefung_SemesterGruppe_table.append(SemesterGruppe4)
+    Pruefung5.pruefung_SemesterGruppe_table.append(SemesterGruppe2)
+    Pruefung1.pruefung_Studiengang_table.append(Studiengang1)
+    Pruefung2.pruefung_Studiengang_table.append(Studiengang1)
+    Pruefung3.pruefung_Studiengang_table.append(Studiengang1)
+    Pruefung4.pruefung_Studiengang_table.append(Studiengang1)
+    Pruefung5.pruefung_Studiengang_table.append(Studiengang1)
+
+    session.add_all([Pruefung1, Pruefung2, Pruefung3, Pruefung4, Pruefung5])
+    session.add_all([Studiengang1, Studiengang2])
+    session.add_all([SemesterGruppe1, SemesterGruppe2, SemesterGruppe3, SemesterGruppe4, SemesterGruppe5])
+
+    session.commit()
+
+def genSemestergruppenVerstoß(session: Session):
+    s = session
+
+    i = 1
+
+    while i <= ORM.PRUEFUNGSTAGE:
+        zeit1 = ZeitSlot(pruefungstag_nummer=i, slotTag_nummer=1)
+        zeit2 = ZeitSlot(pruefungstag_nummer=i, slotTag_nummer=2)
+        zeit3 = ZeitSlot(pruefungstag_nummer=i, slotTag_nummer=3)
+        zeit4 = ZeitSlot(pruefungstag_nummer=i, slotTag_nummer=4)
+        session.add_all([zeit1, zeit2, zeit3, zeit4])
+        i += 1
+
+    Aufsicht1 = Aufsicht(name="Max Müller", kurzform="mül")
+    Aufsicht2 = Aufsicht(name="Klaus Kleber", kurzform="kle")
+    Aufsicht3 = Aufsicht(name="Werner Weiß", kurzform="wei")
+    Aufsicht4 = Aufsicht(name="Anna Angst", kurzform="ang")
+
+    Aufsicht1.nicht_verfuegbare_aufsicht_zeitslots.extend([zeitslotByID(session, 1), zeitslotByID(session, 2)])
+    # Aufsicht3.nicht_verfuegbare_aufsicht_zeitslots.extend([ZeitSlot(pruefungstag_nummer=0, slotTag_nummer=3)])
+    # Aufsicht4.nicht_verfuegbare_aufsicht_zeitslots.extend([ZeitSlot(pruefungstag_nummer=1, slotTag_nummer=1)])
+
+    session.add_all([Aufsicht1, Aufsicht2, Aufsicht3, Aufsicht4])
+
+    Raum1 = Raum(name="AM2", groesse="60")
+    Raum2 = Raum(name="AM1", groesse="80")
+    Raum3 = Raum(name="18.1.01", groesse="30")
+    Raum4 = Raum(name="18.1.03", groesse="35")
+    Raum1.nicht_verfuegbare_zeitslots.extend([zeitslotByID(session, 1), zeitslotByID(session, 2)])
+    # Raum2.nicht_verfuegbare_zeitslots.extend([ZeitSlot(pruefungstag_nummer=0, slotTag_nummer=2)])
+    # Raum3.nicht_verfuegbare_zeitslots.extend([ZeitSlot(pruefungstag_nummer=0, slotTag_nummer=3)])
+    # Raum4.nicht_verfuegbare_zeitslots.extend([ZeitSlot(pruefungstag_nummer=0, slotTag_nummer=1)])
+
+    session.add_all([Raum1, Raum2, Raum3, Raum4])
+
+    SemesterGruppe1 = SemesterGruppe(name="inf1", studiengang=1)
+    SemesterGruppe2 = SemesterGruppe(name="inf3", studiengang=1)
+    SemesterGruppe3 = SemesterGruppe(name="inf5", studiengang=1)
+    SemesterGruppe4 = SemesterGruppe(name="eks1", studiengang=2)
+    SemesterGruppe5 = SemesterGruppe(name="eks3", studiengang=2)
+
+    Studiengang1 = Studiengang(name="Informatik/Softwaretechnik", kurzform="Inf/Swt")
+    Studiengang2 = Studiengang(name="Elektrotechnik- Kommunikationssysteme", kurzform="EKS")
+
+    Pruefung1 = neuePrüfung("Mathematik 1", "Ma1", "SB112", 30,2)
+    Pruefung2 = neuePrüfung("Informatik 1", "Inf1", "SB122", 40,0)
+    Pruefung3 = neuePrüfung("Physik 1", "Phy1", "SB132", 100,0)
+    Pruefung4 = neuePrüfung("Elektronik 1", "Elt1", "SB152", 5,0)
+    Pruefung5 = neuePrüfung("Elektronik 2", "Elt2", "SB152", 5,0)
+
+    Pruefung1.pruefung_SemesterGruppe_table.append(SemesterGruppe1)
+    Pruefung2.pruefung_SemesterGruppe_table.append(SemesterGruppe1)
+    Pruefung3.pruefung_SemesterGruppe_table.append(SemesterGruppe1)
+    Pruefung4.pruefung_SemesterGruppe_table.append(SemesterGruppe4)
+    Pruefung5.pruefung_SemesterGruppe_table.append(SemesterGruppe2)
+    Pruefung1.pruefung_Studiengang_table.append(Studiengang1)
+    Pruefung2.pruefung_Studiengang_table.append(Studiengang1)
+    Pruefung3.pruefung_Studiengang_table.append(Studiengang1)
+    Pruefung4.pruefung_Studiengang_table.append(Studiengang2)
+    Pruefung5.pruefung_Studiengang_table.append(Studiengang1)
+
+    session.add_all([Pruefung1, Pruefung2, Pruefung3, Pruefung4, Pruefung5])
+    session.add_all([Studiengang1, Studiengang2])
+    session.add_all([SemesterGruppe1, SemesterGruppe2, SemesterGruppe3, SemesterGruppe4, SemesterGruppe5])
+
+    session.commit()
 
 if __name__ == '__main__':
     engine = create_engine("sqlite:///" + ORM.NAME + "?check_same_thread=False", echo=False)
@@ -810,9 +943,13 @@ if __name__ == '__main__':
     #kleine Testdaten 5 Prüfungen
     #genTestDatenKlein(session)
     #große Testdaten 98 Prüfungen
-    genTestDatenGroß(session)
+    #genTestDatenGroß(session)
     #Mittlere Testdaten ~25 Klausuren
-    #genTestDatenMittel(session)
+    genTestDatenMittel(session)
+
+    #Tests
+    #genStudiengangsVerstoß(session)
+    #genSemestergruppenVerstoß(session)
 
     # Ausgabe, Auflistung aller Aufsichten,Räume,Prüfungen und Semestergruppen
     aufsichten = session.query(Aufsicht)

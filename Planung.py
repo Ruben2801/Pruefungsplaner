@@ -16,7 +16,7 @@ from Validierung import *
 VIERTER_SLOT_STRAFE = 10
 DRITTER_SLOT_STRAFE = 1
 # Maximale Suchzeit
-MAX_ZEIT = 60.0
+MAX_ZEIT = 5.0
 # Bezeichnungen für den Plan
 uniName = "TH-Lübeck"
 fachbereichName = "Elektrotechnik_Informatik"
@@ -54,7 +54,7 @@ def main():
 
     # Möglichst wenig Räume verteilt = viele Dummyräume
 
-    # Möglichst wenig Räume vergeben,späteZeitSlots 3 und 4 vermeiden
+    # Möglichst wenig Räume vergeben,späteZeitSlots 3 und 4 vermeiden, Wunschtermine
     summanden = raumOptimierung(model, ORM), spaeteZeitSlots(model, ORM, 4, VIERTER_SLOT_STRAFE), \
                 spaeteZeitSlots(model, ORM, 3,DRITTER_SLOT_STRAFE), beachteWunschTermine(model, ORM)
 
@@ -104,8 +104,8 @@ def main():
                                          aufsichtMap[solver.Value(aVar)],
                                          zeitSlotMap[solver.Value(pruefung.zeitVar)])
 
-
-        print(validierePlan(plan))
+        if(validierePlan(plan)):
+            print("Der Plan ist gültig!")
         Aufbereitung.writeTimeTableExcelFile(plan, uniName, fachbereichName, semesterName, orm)
 
     if status == INFEASIBLE:
