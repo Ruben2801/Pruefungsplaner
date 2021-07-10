@@ -232,7 +232,7 @@ def raumGroesseConstraint(model: CpModel, orm: ORM):
 
         model.Add(sum == pruefung.teilnehmerzahl)
 
-
+#METHODEN ZUR ZUSAMMENLEGUNG WIP
 #def raumGroeßeZsmPruefungConstraint(model: CpModel, orm: ORM):
 #     for i in range(len(orm.getPruefungen())):
 #        pImSelbenRaum = []
@@ -261,7 +261,7 @@ def raumGroesseConstraint(model: CpModel, orm: ORM):
 #                        model.Add(sum(bools) != 3).OnlyEnforceIf(bool.Not())
 #                        model.Add(pruef_i.teilnehmerzahl + pruef_j.teilnehmerzahl < raum.groesse).OnlyEnforceIf(bool)
 
-#Methode zur Anpassung der Zusammenlegung
+#Methode zur Anpassung der Zusammenlegung WIP
 #def aufsichtZeitConstraintnew(model: CpModel, orm: ORM):
 #    """
 #    Aufsicht Zeit Constraint Gleiche ZeitVar && GleicherRaum -> gleicheAufsicht
@@ -357,7 +357,7 @@ def raumZeitConstraint(model: CpModel, orm: ORM):
                     model.Add(pruef_i.raumVars[r1] != pruef_j.raumVars[r2]).OnlyEnforceIf(richtigerRaum)
                 del bools[-1]
 
-#RaumZeitConstraint für die Zusammenlegung gedacht
+#RaumZeitConstraint für die Zusammenlegung gedacht,WIP
 #def raumZeitConstraintnew(model: CpModel, orm: ORM):
 #    """
 #    Raum Zeit Constraint Gleiche ZeitVar && GleicheAufsicht -> gleicherRaum
