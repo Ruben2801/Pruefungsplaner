@@ -46,7 +46,7 @@ def main():
     aufsichtNichtVerfuegbarConstraint(model, orm)
     raumNichtVerfuegbarConstraint(model, orm)
 
-    # Constraints für die Einführung von zusammengelegten Klausuren
+    # Constraints für die Einführung von zusammengelegten Klausuren WIP, nicht anwendbar
     # raumGroeßeZsmPruefungConstraint(model, orm)
     # raumZeitConstraintnew(model, orm)
     # aufsichtZeitConstraintnew(model, orm)
